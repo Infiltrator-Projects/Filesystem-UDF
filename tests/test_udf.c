@@ -13,9 +13,62 @@
 #include <sys/stat.h>
 #include <unistd.h>
 static int fd;static uint32_t sector;static unsigned allocations,fail;static uint64_t flip=UINT64_MAX;
+enum { BLOCK=2048 };
+typedef struct {uint64_t off;uint8_t data[BLOCK];} Patch;
+static Patch patches[2];static unsigned patch_count;
+static uint32_t g16(const uint8_t *p){return p[0]|(uint32_t)p[1]<<8;}
+static uint32_t g32(const uint8_t *p){return g16(p)|g16(p+2)<<16;}
+static uint64_t g64(const uint8_t *p){return g32(p)|(uint64_t)g32(p+4)<<32;}
+static void p16(uint8_t *p,uint32_t x){p[0]=x;p[1]=x>>8;}
+static void p32(uint8_t *p,uint32_t x){p16(p,x);p16(p+2,x>>16);}
+static void p64(uint8_t *p,uint64_t x){p32(p,x);p32(p+4,x>>32);}
+static void seal(uint8_t *p,uint32_t size,uint32_t id,uint32_t loc)
+{
+    p16(p,id);p16(p+2,2);p[4]=p[5]=0;p32(p+12,loc);p16(p+10,size-16);
+    uint16_t crc=0;
+    for(uint32_t i=16;i<size;++i){crc^=(uint16_t)p[i]<<8;for(unsigned j=0;j<8;++j)
+        crc=(uint16_t)((crc<<1)^((crc&0x8000)?0x1021:0));}
+    p16(p+8,crc);
+    for(unsigned i=0;i<16;++i)if(i!=4)p[4]=(uint8_t)(p[4]+p[i]);
+}
+static void direct(uint32_t block,uint8_t *p)
+{assert(pread(fd,p,BLOCK,(off_t)block*BLOCK)==BLOCK);}
+static uint32_t partition_start,partition_length;
+static uint32_t find_entry(uint64_t bytes)
+{
+    uint8_t p[BLOCK];uint32_t found=UINT32_MAX;
+    for(uint32_t i=0;i<partition_length;++i){
+        direct(partition_start+i,p);
+        if(g16(p)==261&&g32(p+12)==i&&p[27]==5&&g64(p+56)==bytes){
+            assert(found==UINT32_MAX);found=i;
+        }
+    }
+    assert(found!=UINT32_MAX);return found;
+}
+static void discover_fixture(void)
+{
+    uint8_t p[BLOCK];direct(256,p);assert(g16(p)==2);
+    uint32_t start=g32(p+20),blocks=g32(p+16)/BLOCK;
+    for(uint32_t i=0;i<blocks;++i){
+        direct(start+i,p);if(g16(p)==5){partition_start=g32(p+188);partition_length=g32(p+192);break;}
+    }
+    assert(partition_start&&partition_length);
+}
+static uint8_t *patch_entry(uint32_t id)
+{
+    assert(patch_count<2);
+    Patch *p=&patches[patch_count++];p->off=(uint64_t)(partition_start+id)*BLOCK;
+    direct(partition_start+id,p->data);return p->data;
+}
+
 static int rd(void *c,uint64_t off,void *p,uint32_t n)
 {
     (void)c;if(fail||off%sector||n%sector||pread(fd,p,n,(off_t)off)!=(ssize_t)n)return -1;
+    for(unsigned i=0;i<patch_count;++i){
+        const Patch *q=&patches[i];
+        uint64_t lo=off>q->off?off:q->off,hi=off+n<q->off+BLOCK?off+n:q->off+BLOCK;
+        if(lo<hi)memcpy((uint8_t *)p+lo-off,q->data+lo-q->off,(size_t)(hi-lo));
+    }
     if(flip>=off&&flip-off<n)((unsigned char *)p)[flip-off]^=1;
     return 0;
 }
@@ -33,7 +86,9 @@ int main(int argc,char **argv)
     const IfsFsModuleApiV2 *api=entry();assert(ifs_fs_api_v2_valid(api,"udf"));
     const IfsFsCoreOpsV2 *core=(const void *)ifs_fs_group_v2(api,IFS_FS_GROUP_CORE);
     const IfsFsVolumeOpsV2 *vol=(const void *)ifs_fs_group_v2(api,IFS_FS_GROUP_VOLUME);
-    assert(core&&vol&&!core->write);
+    const IfsFsMetadataOpsV2 *meta=(const void *)ifs_fs_group_v2(api,IFS_FS_GROUP_METADATA);
+    assert(core&&vol&&meta&&meta->readlink&&!core->write);
+    discover_fixture();uint32_t proof_id=find_entry((uint64_t)n),child_id=find_entry(3);
     for(sector=512;sector<=4096;sector*=8){
         IfsFsHostRuntimeV2 h={.abi_version=2,.structure_bytes=sizeof(h),.capabilities=IFS_FS_HOST_READ_ONLY,
           .volume_bytes=(uint64_t)st.st_size,.logical_sector_bytes=sector,.physical_sector_bytes=sector,
@@ -49,6 +104,39 @@ int main(int argc,char **argv)
         assert(core->stat(v,"/proof.bin",&e)==0&&e.size_bytes==(uint64_t)n);
         assert(core->read(v,"/proof.bin",0,actual,(uint32_t)n)==0&&!memcmp(actual,expected,(size_t)n));
         assert(core->read(v,"/dir/child",0,actual,3)==0&&!memcmp(actual,"yes",3));
+        /* Test-only overlays exercise alternate allocation encodings
+         * without claiming the original formatter produced them. */
+        uint8_t *p=patch_entry(proof_id);
+        assert((g16(p+34)&7)==0&&g32(p+168)==0&&g32(p+172)==8);
+        uint32_t lenad=g32(p+176),posad=g32(p+180);
+        p16(p+34,(g16(p+34)&~7u)|1u);p32(p+172,16);memset(p+184,0,8);
+        seal(p,192,261,proof_id);
+        assert(core->read(v,"/proof.bin",0,actual,(uint32_t)n)==0&&!memcmp(actual,expected,(size_t)n));
+        patch_count=0;
+        p=patch_entry(child_id);p16(p+34,(g16(p+34)&~7u)|3u);p32(p+172,3);
+        memcpy(p+176,"yes",3);seal(p,179,261,child_id);
+        assert(core->read(v,"/dir/child",0,actual,3)==0&&!memcmp(actual,"yes",3));
+        /* A local relative symlink uses path components, not raw text. */
+        p[27]=12;p64(p+56,18);p32(p+172,18);
+        memset(p+176,0,18);p[176]=3;p[180]=5;p[181]=10;p[184]=8;memcpy(p+185,"proof.bin",9);
+        seal(p,194,261,child_id);
+        uint32_t linkbytes;assert(meta->readlink(v,"/dir/child",name,sizeof name,&linkbytes)==0&&
+                                 linkbytes==12&&!strcmp(name,"../proof.bin"));
+        p[181]=255;seal(p,194,261,child_id);
+        assert(meta->readlink(v,"/dir/child",name,sizeof name,&linkbytes)==IFS_FS_CORRUPT);
+        patch_count=0;
+        p=patch_entry(proof_id);
+        /* The selected final padding block is used only as an overlay AED.
+         * Check it cannot overlap the original payload. */
+        uint32_t aed=partition_length-1;
+        assert(aed!=proof_id&&(aed<posad||aed-posad>=(lenad+BLOCK-1)/BLOCK));
+        p32(p+176,0xc0000000u|BLOCK);p32(p+180,aed);seal(p,184,261,proof_id);
+        uint8_t *a=patch_entry(aed);memset(a,0,BLOCK);p32(a+16,proof_id);p32(a+20,8);
+        p32(a+24,lenad);p32(a+28,posad);seal(a,32,258,aed);
+        assert(core->read(v,"/proof.bin",0,actual,(uint32_t)n)==0&&!memcmp(actual,expected,(size_t)n));
+        p32(a+24,0xc0000000u|BLOCK);p32(a+28,aed);seal(a,32,258,aed);
+        assert(core->read(v,"/proof.bin",0,actual,1)==IFS_FS_CORRUPT);
+        patch_count=0;
         unsigned found=0,end=0;
         for(unsigned j=0;j<16;++j){int status=core->directory_entry(v,"/",j,&e);
             if(status==IFS_FS_END){end=1;break;}assert(status==0);
