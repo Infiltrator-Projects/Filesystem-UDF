@@ -1,635 +1,274 @@
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (History and revision boundaries) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(Universal Disk Format is the Optical Storage Technology Association's) Tj
-T* (interoperable profile of ECMA-167 / ISO 13346 volume and file structures.) Tj
-T* (Revisions 1.02, 1.50, 2.00/2.01, 2.50 and 2.60 have different allowed) Tj
-T* (recording and partition-map mechanisms. UDF is used on DVD, Blu-ray, optical) Tj
-T* (packet-written media and also block devices. It is not ISO 9660, although) Tj
-T* (bridge media can carry both. The original profile, access type and logical) Tj
-T* (block size govern what may be written. Write-once, rewritable, read-only and) Tj
-T* (pseudo-overwrite profiles must not be treated as interchangeable mutable) Tj
-T* (disks.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 1 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 18 Tf 43 736 Td (Contents) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 711 Td (1. History and revision boundaries) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 695 Td (2. Volume recognition and anchor discovery) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 679 Td (3. Universal descriptor tag) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 663 Td (4. Volume descriptor sequence) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 647 Td (5. Partition maps and translation) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 631 Td (6. File set and ICB bootstrap) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 615 Td (7. File Entry and Extended File Entry) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 599 Td (8. Allocation descriptors and file reads) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 583 Td (9. Directory records and names) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 567 Td (10. Virtual and sparable partitions) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 551 Td (11. Metadata partitions and free space) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 535 Td (12. Mutation, durability and recovery) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 519 Td (13. Implementation and qualification boundary) Tj ET
+0.08 0.14 0.20 rg BT /F1 11 Tf 43 503 Td (14. Normative references and validation) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 1) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Volume recognition and anchor discovery) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(Distinguish a physical medium sector, volume logical sector and partition) Tj
-T* (logical block. Optical media commonly use 2048-byte sectors; other media) Tj
-T* (differ. The Volume Recognition Sequence starts at byte 32768 relative to the) Tj
-T* (session/volume origin and uses BEA01, NSR02 or NSR03, and TEA01 identifiers) Tj
-T* (in volume structure descriptors. It is not sufficient evidence of a usable) Tj
-T* (namespace. Anchor Volume Descriptor Pointers \(tag 2\) are sought at prescribed) Tj
-T* (logical sectors, normally 256, N-256 and N \(N is the last sector number, with) Tj
-T* (profile exceptions\). An anchor carries main and reserve descriptor-sequence) Tj
-T* (extent descriptors at offsets 16 and 24; each has byte length and) Tj
-T* (logical-sector position. Validate both sequences and select coherent) Tj
-T* (descriptors according to sequence numbers and profile rules.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 2 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (1. History and revision boundaries) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (Universal Disk Format is the Optical Storage Technology Association's interoperable) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (profile of ECMA-167 / ISO 13346 volume and file structures. Revisions 1.02, 1.50,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (2.00/2.01, 2.50 and 2.60 have different allowed recording and partition-map) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (mechanisms. UDF is used on DVD, Blu-ray, optical packet-written media and also) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (block devices. It is not ISO 9660, although bridge media can carry both. The) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (original profile, access type and logical block size govern what may be written.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (Write-once, rewritable, read-only and pseudo-overwrite profiles must not be treated) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (as interchangeable mutable disks.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 2) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Universal descriptor tag) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(Every tagged ECMA descriptor begins with a 16-byte tag: identifier 0,) Tj
-T* (descriptor version 2, one-byte checksum 4, reserved 5, serial 6, CRC16 8, CRC) Tj
-T* (length 10, tag location 12. Integers are little-endian. The tag checksum is) Tj
-T* (the sum modulo 256 of the other fifteen tag bytes. Descriptor CRC uses the) Tj
-T* (ECMA CRC-16 polynomial 0x1021, initial zero, on the declared body bytes) Tj
-T* (immediately following the tag. A CRC length must fit the containing) Tj
-T* (descriptor and allowed extent. Tag location is the logical location) Tj
-T* (appropriate to the descriptor's address space, not always the absolute device) Tj
-T* (sector. Check identifier, supported version, location, checksum and CRC) Tj
-T* (before following pointers; do not accept corrupt structure just because the) Tj
-T* (signature is recognisable.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 3 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (2. Volume recognition and anchor discovery) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (Distinguish a physical medium sector, volume logical sector and partition logical) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (block. Optical media commonly use 2048-byte sectors; other media differ. The Volume) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (Recognition Sequence starts at byte 32768 relative to the session/volume origin and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (uses BEA01, NSR02 or NSR03, and TEA01 identifiers in volume structure descriptors.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (It is not sufficient evidence of a usable namespace. Anchor Volume Descriptor) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (Pointers \(tag 2\) are sought at prescribed logical sectors, normally 256, N-256 and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (N \(N is the last sector number, with profile exceptions\). An anchor carries main) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (and reserve descriptor-sequence extent descriptors at offsets 16 and 24; each has) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (byte length and logical-sector position. Validate both sequences and select) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (coherent descriptors according to sequence numbers and profile rules.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 3) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Volume descriptor sequence) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(Volume descriptors describe physical partitions, logical volumes, character) Tj
-T* (sets and integrity sequences. Principal tag IDs: 1 primary volume, 2 anchor,) Tj
-T* (3 volume descriptor pointer, 4 implementation use, 5 partition, 6 logical) Tj
-T* (volume, 7 unallocated space, 8 terminating, 9 logical volume integrity.) Tj
-T* (Follow valid continuation descriptors with bounds and cycle limits. A) Tj
-T* (partition descriptor has sequence number 16, flags 20, partition number 22,) Tj
-T* (32-byte contents identifier 24, 128-byte contents use 56, access type 184,) Tj
-T* (partition start sector 188, length 192. A logical volume descriptor has) Tj
-T* (64-byte character-set field at 20, 128-byte identifier at 84, logical block) Tj
-T* (bytes at 212, domain identifier at 216, contents use at 248, map table byte) Tj
-T* (length 264, map count 268, integrity-sequence extent at 432 and map records) Tj
-T* (from 440. Bound every variable record by both map length and descriptor) Tj
-T* (capacity.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 4 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (3. Universal descriptor tag) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (Every tagged ECMA descriptor begins with a 16-byte tag: identifier 0, descriptor) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (version 2, one-byte checksum 4, reserved 5, serial 6, CRC16 8, CRC length 10, tag) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (location 12. Integers are little-endian. The tag checksum is the sum modulo 256 of) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (the other fifteen tag bytes. Descriptor CRC uses the ECMA CRC-16 polynomial 0x1021,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (initial zero, on the declared body bytes immediately following the tag. A CRC) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (length must fit the containing descriptor and allowed extent. Tag location is the) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (logical location appropriate to the descriptor's address space, not always the) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (absolute device sector. Check identifier, supported version, location, checksum and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (CRC before following pointers; do not accept corrupt structure just because the) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (signature is recognisable.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 4) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Partition maps and translation) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(A logical-block address comprises a 32-bit block number and 16-bit) Tj
-T* (partition-map reference. The reference indexes the logical volume's) Tj
-T* (partition-map table, not the partition number itself. A type-1 six-byte map) Tj
-T* (contains type/length at 0/1, volume sequence 2 and physical partition number) Tj
-T* (4. For a simple physical map, resolve the referenced partition and add its) Tj
-T* (start sector to the block position using compatible logical units. Example:) Tj
-T* (with 2048-byte sectors/blocks and partition start 1000, logical block 25) Tj
-T* (begins at byte 2099200. Type-2 maps include virtual, sparable and metadata) Tj
-T* (partitions, each requiring additional translation. Validate volume sequence,) Tj
-T* (partition bounds and mapping depth. Never use the physical formula for a) Tj
-T* (virtual or metadata partition merely because a partition descriptor has a) Tj
-T* (plausible start.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 5 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (4. Volume descriptor sequence) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (Volume descriptors describe physical partitions, logical volumes, character sets) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (and integrity sequences. Principal tag IDs: 1 primary volume, 2 anchor, 3 volume) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (descriptor pointer, 4 implementation use, 5 partition, 6 logical volume, 7) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (unallocated space, 8 terminating, 9 logical volume integrity. Follow valid) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (continuation descriptors with bounds and cycle limits. A partition descriptor has) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (sequence number 16, flags 20, partition number 22, 32-byte contents identifier 24,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (128-byte contents use 56, access type 184, partition start sector 188, length 192.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (A logical volume descriptor has 64-byte character-set field at 20, 128-byte) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (identifier at 84, logical block bytes at 212, domain identifier at 216, contents) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (use at 248, map table byte length 264, map count 268, integrity-sequence extent at) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (432 and map records from 440. Bound every variable record by both map length and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 552 Td (descriptor capacity.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 5) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (File set and ICB bootstrap) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(The logical volume's contents-use area encodes a long allocation descriptor) Tj
-T* (for the file set. Resolve it through the partition maps and verify File Set) Tj
-T* (Descriptor tag 256. In the FSD, the root-directory ICB long descriptor begins) Tj
-T* (at 400, domain identifier at 416, next extent at 448 and stream-directory ICB) Tj
-T* (at 464. The root ICB leads to a File Entry \(tag 261\) or Extended File Entry) Tj
-T* (\(tag 266\), possibly using admitted indirect-entry strategies. An ICB tag is) Tj
-T* (twenty bytes; strategy type is at 4, maximum entries 8, file type 11, parent) Tj
-T* (logical address 12 and flags 18 \(relative to ICB tag\). Low three flags select) Tj
-T* (allocation descriptor encoding. Validate ICB strategy, type, identity and) Tj
-T* (continuation limits. An object identity is its resolved ICB address in the) Tj
-T* (logical volume, not the current name.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 6 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (5. Partition maps and translation) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (A logical-block address comprises a 32-bit block number and 16-bit partition-map) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (reference. The reference indexes the logical volume's partition-map table, not the) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (partition number itself. A type-1 six-byte map contains type/length at 0/1, volume) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (sequence 2 and physical partition number 4. For a simple physical map, resolve the) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (referenced partition and add its start sector to the block position using) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (compatible logical units. Example: with 2048-byte sectors/blocks and partition) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (start 1000, logical block 25 begins at byte 2099200. Type-2 maps include virtual,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (sparable and metadata partitions, each requiring additional translation. Validate) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (volume sequence, partition bounds and mapping depth. Never use the physical formula) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (for a virtual or metadata partition merely because a partition descriptor has a) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (plausible start.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 542 Td (The ECMA-167 tag location, CRC, extent lengths and logical partition map must agree) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 528 Td (before file-set traversal. VAT, sparing and metadata partitions are separate) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 514 Td (mapping profiles; support depends on UDF revision and recording model.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 6) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (File Entry and Extended File Entry) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(Both records have descriptor tag 0..15, ICB tag 16..35, UID/GID/permissions) Tj
-T* (at 36/40/44, 16-bit link count 48, record format/display 50/51 and record) Tj
-T* (length 52. FE: information length 56, logical blocks recorded 64, three) Tj
-T* (12-byte timestamps at 72/84/96, checkpoint 108, external EA ICB 112,) Tj
-T* (implementation identifier 128, unique ID 160, EA and allocation byte lengths) Tj
-T* (168/172, variable area at 176. EFE: information length 56, object size 64,) Tj
-T* (blocks recorded 72, four timestamps 80/92/104/116, checkpoint 128, EA ICB) Tj
-T* (136, stream ICB 152, implementation identifier 168, unique ID 200, EA and) Tj
-T* (allocation lengths 208/212, variable area at 216. Bound the EA and allocation) Tj
-T* (areas independently. Select the layout from the tag and admitted revision,) Tj
-T* (not merely record size.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 7 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (6. File set and ICB bootstrap) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (The logical volume's contents-use area encodes a long allocation descriptor for the) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (file set. Resolve it through the partition maps and verify File Set Descriptor tag) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (256. In the FSD, the root-directory ICB long descriptor begins at 400, domain) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (identifier at 416, next extent at 448 and stream-directory ICB at 464. The root ICB) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (leads to a File Entry \(tag 261\) or Extended File Entry \(tag 266\), possibly using) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (admitted indirect-entry strategies. An ICB tag is twenty bytes; strategy type is at) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (4, maximum entries 8, file type 11, parent logical address 12 and flags 18) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (\(relative to ICB tag\). Low three flags select allocation descriptor encoding.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (Validate ICB strategy, type, identity and continuation limits. An object identity) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (is its resolved ICB address in the logical volume, not the current name.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 7) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Allocation descriptors and file reads) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(Short allocation descriptors are eight bytes: length/type word at 0 and block) Tj
-T* (position 4 within the ICB's partition. Long descriptors are sixteen bytes:) Tj
-T* (length/type 0, logical block 4, partition-map reference 8, implementation) Tj
-T* (bytes 10. Extended descriptors add recorded and information lengths; support) Tj
-T* (them only where permitted by the UDF profile. High two bits of length encode) Tj
-T* (recorded/allocated \(0\), unrecorded/allocated \(1\), unrecorded/unallocated \(2\),) Tj
-T* (or next allocation-descriptor extent \(3\); low 30 bits give byte length. A) Tj
-T* (continuation points to allocation metadata \(tag 258\) rather than file) Tj
-T* (payload. Inline allocation places bytes in the file entry itself. Sum logical) Tj
-T* (extent coverage, resolve recorded ranges, return zero for native unrecorded) Tj
-T* (extents, clip to information length and detect loops. Do not read unrecorded) Tj
-T* (disk bytes.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 8 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (7. File Entry and Extended File Entry) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (Both records have descriptor tag 0..15, ICB tag 16..35, UID/GID/permissions at) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (36/40/44, 16-bit link count 48, record format/display 50/51 and record length 52.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (FE: information length 56, logical blocks recorded 64, three 12-byte timestamps at) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (72/84/96, checkpoint 108, external EA ICB 112, implementation identifier 128,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (unique ID 160, EA and allocation byte lengths 168/172, variable area at 176. EFE:) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (information length 56, object size 64, blocks recorded 72, four timestamps) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (80/92/104/116, checkpoint 128, EA ICB 136, stream ICB 152, implementation) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (identifier 168, unique ID 200, EA and allocation lengths 208/212, variable area at) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (216. Bound the EA and allocation areas independently. Select the layout from the) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (tag and admitted revision, not merely record size.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 8) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Directory records and names) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(A File Identifier Descriptor \(tag 257\) has a 38-byte fixed prefix: file) Tj
-T* (version at 16, characteristics 18, identifier byte length 19, target ICB long) Tj
-T* (descriptor 20, implementation-use length 36. Implementation bytes follow at) Tj
-T* (38, then filename and padding to a four-byte boundary. Parent entries,) Tj
-T* (deleted entries, hidden and metadata entries are distinguished by) Tj
-T* (characteristic flags; the parent entry normally has no filename. A 19-byte) Tj
-T* (name and four-byte implementation area give align_up\(38+19+4,4\)=64 bytes.) Tj
-T* (Names use OSTA Compressed Unicode CS0; leading compression ID 8 or 16 selects) Tj
-T* (one-byte or big-endian two-byte code units. A fixed-width dstring has its) Tj
-T* (encoded length in the last byte, unlike an FID name. Compare decoded names) Tj
-T* (under the admitted profile, verify tag location and CRC, and resolve the) Tj
-T* (target ICB instead of copying a guessed inode.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 9 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (8. Allocation descriptors and file reads) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (Short allocation descriptors are eight bytes: length/type word at 0 and block) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (position 4 within the ICB's partition. Long descriptors are sixteen bytes:) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (length/type 0, logical block 4, partition-map reference 8, implementation bytes 10.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (Extended descriptors add recorded and information lengths; support them only where) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (permitted by the UDF profile. High two bits of length encode recorded/allocated) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (\(0\), unrecorded/allocated \(1\), unrecorded/unallocated \(2\), or next) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (allocation-descriptor extent \(3\); low 30 bits give byte length. A continuation) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (points to allocation metadata \(tag 258\) rather than file payload. Inline allocation) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (places bytes in the file entry itself. Sum logical extent coverage, resolve) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (recorded ranges, return zero for native unrecorded extents, clip to information) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (length and detect loops. Do not read unrecorded disk bytes.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 9) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Virtual and sparable partitions) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(The Virtual Allocation Table \(VAT\) translates virtual block indexes to) Tj
-T* (physical partition positions and permits logical changes on write-once media.) Tj
-T* (VAT layouts and discovery differ between revisions 1.50 and 2.x; the newest) Tj
-T* (valid VAT and its previous-VAT links are essential to coherent session) Tj
-T* (interpretation. An unmapped entry is not a physical all-ones address. A) Tj
-T* (sparable partition relocates defective packets through validated sparing) Tj
-T* (tables; map the packet start and preserve the in-packet displacement,) Tj
-T* (checking table version and alignment. Duplicate sparing tables may disagree;) Tj
-T* (choose only a valid, coherent generation. These maps can be layered with) Tj
-T* (profile-specific restrictions. An implementation that handles only physical) Tj
-T* (type-1 maps must reject or explicitly limit virtual/sparable media, not) Tj
-T* (report generic UDF compatibility.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 10 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (9. Directory records and names) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (A File Identifier Descriptor \(tag 257\) has a 38-byte fixed prefix: file version at) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (16, characteristics 18, identifier byte length 19, target ICB long descriptor 20,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (implementation-use length 36. Implementation bytes follow at 38, then filename and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (padding to a four-byte boundary. Parent entries, deleted entries, hidden and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (metadata entries are distinguished by characteristic flags; the parent entry) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (normally has no filename. A 19-byte name and four-byte implementation area give) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (align_up\(38+19+4,4\)=64 bytes. Names use OSTA Compressed Unicode CS0; leading) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (compression ID 8 or 16 selects one-byte or big-endian two-byte code units. A) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (fixed-width dstring has its encoded length in the last byte, unlike an FID name.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (Compare decoded names under the admitted profile, verify tag location and CRC, and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (resolve the target ICB instead of copying a guessed inode.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 10) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Metadata partitions and free space) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(UDF 2.50 introduced metadata partitions: metadata file extents map logical) Tj
-T* (metadata blocks, with optional mirror and bitmap files. Validate their) Tj
-T* (special ICBs, allocation unit size, alignment and map references; ordinary) Tj
-T* (payload and metadata storage may use different mappings. The logical volume) Tj
-T* (integrity descriptor records integrity state, partition free-space/size) Tj
-T* (tables and revision-specific implementation fields. Space bitmap descriptors) Tj
-T* (use a tagged header followed by bit and byte counts and bitmap bytes; native) Tj
-T* (unallocated-space tables are an alternative. Reconcile the selected) Tj
-T* (partition's actual free-space representation with allocations and reserved) Tj
-T* (structures. Sequential write-once media cannot reclaim old sectors by) Tj
-T* (clearing a bitmap. Do not report physically unwritable capacity as generic) Tj
-T* (free space.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 11 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (10. Virtual and sparable partitions) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (The Virtual Allocation Table \(VAT\) translates virtual block indexes to physical) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (partition positions and permits logical changes on write-once media. VAT layouts) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (and discovery differ between revisions 1.50 and 2.x; the newest valid VAT and its) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (previous-VAT links are essential to coherent session interpretation. An unmapped) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (entry is not a physical all-ones address. A sparable partition relocates defective) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (packets through validated sparing tables; map the packet start and preserve the) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (in-packet displacement, checking table version and alignment. Duplicate sparing) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (tables may disagree; choose only a valid, coherent generation. These maps can be) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (layered with profile-specific restrictions. An implementation that handles only) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (physical type-1 maps must reject or explicitly limit virtual/sparable media, not) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (report generic UDF compatibility.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 11) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Mutation, durability and recovery) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(For rewritable media, reserve target ranges and ICBs, write and verify data,) Tj
-T* (publish allocation and namespace metadata under the profile's integrity) Tj
-T* (ordering, and update free-space accounting. Sequential media instead append) Tj
-T* (replacement structures and publish new mapping state according to VAT or) Tj
-T* (pseudo-overwrite rules. UDF descriptor CRCs detect corruption but do not) Tj
-T* (constitute a universal metadata journal. A closed integrity sequence is not) Tj
-T* (proof that all data is valid. A formatter must produce the correct) Tj
-T* (recognition, anchors, descriptor sequences, partition maps, integrity, file) Tj
-T* (set and root for its selected revision. Defragmentation requires a writable) Tj
-T* (profile, verified relocation and updated ICB ownership; reject write-once and) Tj
-T* (unsupported metadata-map cases rather than applying a generic block mover.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 12 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (11. Metadata partitions and free space) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (UDF 2.50 introduced metadata partitions: metadata file extents map logical metadata) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (blocks, with optional mirror and bitmap files. Validate their special ICBs,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (allocation unit size, alignment and map references; ordinary payload and metadata) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (storage may use different mappings. The logical volume integrity descriptor records) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (integrity state, partition free-space/size tables and revision-specific) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (implementation fields. Space bitmap descriptors use a tagged header followed by bit) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (and byte counts and bitmap bytes; native unallocated-space tables are an) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (alternative. Reconcile the selected partition's actual free-space representation) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (with allocations and reserved structures. Sequential write-once media cannot) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (reclaim old sectors by clearing a bitmap. Do not report physically unwritable) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (capacity as generic free space.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 12) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Normative references and validation) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(ECMA-167 and OSTA's revision-specific UDF profiles are the format authority:) Tj
-T* (https://ecma-international.org/publications-and-standards/technical-reports/) Tj
-T* (ecma-tr-112/ . Independent pinned structure cross-check:) Tj
-T* (https://github.com/torvalds/linux/blob/v6.12/fs/udf/ecma_167.h and) Tj
-T* (fs/udf/osta_udf.h. Algorithms in fs/udf/super.c, partition.c, inode.c,) Tj
-T* (directory.c and unicode.c. Use independent udftools mkudffs and udfinfo,) Tj
-T* (optical images and revision-specific fixtures. Test corrupted anchors,) Tj
-T* (conflicting descriptor sequences, CRC/tag-location failures, map indirection,) Tj
-T* (VAT generations, sparing and metadata mirrors, short/long/inline extents,) Tj
-T* (names, streams and interrupted writes. Exact map-variant structures,) Tj
-T* (sequential-media discovery, timestamp semantics and revision-specific write) Tj
-T* (constraints still need detailed normative validation. Prior design and) Tj
-T* (preview PDFs are preserved in historical appendices; no operational provider) Tj
-T* (qualification is claimed.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 13 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (12. Mutation, durability and recovery) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (For rewritable media, reserve target ranges and ICBs, write and verify data,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (publish allocation and namespace metadata under the profile's integrity ordering,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (and update free-space accounting. Sequential media instead append replacement) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (structures and publish new mapping state according to VAT or pseudo-overwrite) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (rules. UDF descriptor CRCs detect corruption but do not constitute a universal) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (metadata journal. A closed integrity sequence is not proof that all data is valid.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (A formatter must produce the correct recognition, anchors, descriptor sequences,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (partition maps, integrity, file set and root for its selected revision.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (Defragmentation requires a writable profile, verified relocation and updated ICB) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (ownership; reject write-once and unsupported metadata-map cases rather than) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (applying a generic block mover.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 13) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.01 0.52 0.56 rg 50 747 116 5 re f
-1 1 1 rg BT /F2 11 Tf 50 807 Td (INFILTRATOR / FILESYSTEM ENGINEERING REFERENCE) Tj ET
-BT /F2 21 Tf 50 775 Td (UDF - technical reference) Tj ET
-0.05 0.13 0.22 rg BT /F2 16 Tf 50 715 Td (Historical reference appendices) Tj ET
-BT /F1 11 Tf 15 TL 50 685 Td
-(The following pages preserve both earlier documents. Their dated status) Tj
-T* (claims do not establish current implementation or qualification.) Tj
-ET
-0.05 0.13 0.22 rg BT /F1 9 Tf 50 42 Td (Engineering chapter 14 | Original format, not provider qualification) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (13. Implementation and qualification boundary) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (The independent provider uses Common V2:) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (https://github.com/Infiltrator-Projects/Libraries/blob/main/docs/FILESYSTEM_COMMON_) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (ABI_V2.md . Negotiate actual operation masks and media profiles. Distinguish) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (unsupported, corrupt, I/O and stale-handle results. Require bounded host I/O,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (exclusive unmounted ownership and durable flush before mutation. Test Media and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (Defragmenter consume the same engine, not separate format parsers. Hosted and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (freestanding binaries, relocation, recovery, BOOT, kernel integration and packages) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (require separate exact-source evidence. Current support belongs to the repository) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (README and qualification records. The intended package paths are) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (/System/Filesystems/ and /System/Resources/Documentation/; the reference is not an) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (installation or release-status claim.) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 14) Tj ET
 
 %%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 01) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (HISTORY / ORIGINAL DESIGN / DISK FORMAT) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (ECMA-167/UDF local block and optical storage; supported revisions and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (partition types explicit. This is a design contract, not a claim of) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (implemented capabilities.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 614 Tm (Native provider design and original-format reference. No independent runtime) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 598 Tm (provider has yet been qualified.) Tj ET
-BT /F2 11 Tf 0.02 0.50 0.55 rg 1 0 0 1 50 568 Tm (CONCEPTUAL MEDIA MAP - NOT A SECTOR MAP) Tj ET
-0.05 0.36 0.47 rg 50 491 238 62 re f
-BT /F2 11 Tf 1 1 1 rg 1 0 0 1 62 517 Tm (Anchor / descriptors) Tj ET
-0.05 0.36 0.47 rg 301 491 238 62 re f
-BT /F2 11 Tf 1 1 1 rg 1 0 0 1 313 517 Tm (Partition maps) Tj ET
-0.05 0.36 0.47 rg 50 415 238 62 re f
-BT /F2 11 Tf 1 1 1 rg 1 0 0 1 62 441 Tm (File set / entries) Tj ET
-0.05 0.36 0.47 rg 301 415 238 62 re f
-BT /F2 11 Tf 1 1 1 rg 1 0 0 1 313 441 Tm (Allocation extents) Tj ET
-BT /F2 10 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 388 Tm (History / architecture / allocation / integrity / implementation / tests) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 02) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (HISTORICAL CHRONOLOGY) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (UDF was standardised by OSTA as a profile of ECMA-167 for interoperable) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (optical and other media. UDF revisions differ in partition mapping and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (metadata rules; the physical recording model and revision matter.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 614 Tm (The historic format and the InfiltratorOS implementation are distinct. An) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 598 Tm (external driver or archival utility is evidence, not a qualified production) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 582 Tm (provider.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 552 Tm () Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 536 Tm (https://ecma-international.org/publications-and-standards/standards/ecma-167/) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 03) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (ORIGINAL ON-DISK ARCHITECTURE) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (Anchor and descriptor sequences, descriptor tags/CRC, logical volume and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (partition maps, file-set and file entries, allocation descriptors, directory) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (identifiers, VAT, sparable and metadata partition variants. The single native) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 628 Tm (C/C++ engine owns these format semantics; consumers provide bounded Common V2) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 612 Tm (host services, never competing parsers.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 04) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (ALLOCATION, INTEGRITY AND RECOVERY) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (Validate tag locations and CRCs, logical-to-physical mappings, extent bounds) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (and integrity state. Do not treat write-once, packet-written and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (random-writable media as interchangeable. Qualify revision-specific) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 628 Tm (allocation and update rules before mutations. All arithmetic, offsets and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 612 Tm (lengths are checked before I/O. Writable operations require exclusive access,) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 596 Tm (explicit ordering, flush and interruption/recovery evidence. Read-only) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 580 Tm (operations leave the medium unchanged.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 05) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (DISK READ PATH / SOURCE EVIDENCE) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (Original editable source) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (\(https://github.com/Infiltrator-Projects/Filesystems/blob/101026021d9088d80b7) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (f0f472d9061f0e2c688a3/native/filesystems/udf/linux/ecma_167.h\) \(blob) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 628 Tm (415b050b97...\). The imported header defines ECMA-167 descriptor tags, volume) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 612 Tm (structure descriptors, extent descriptors, character sets, timestamps,) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 596 Tm (registration identifiers and primary volume descriptors. Validate tag) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 580 Tm (checksum/CRC, tag location, extent lengths and partition maps before) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 564 Tm (resolving file-set, file entry and allocation descriptors. Separate logical) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 548 Tm (partition address translation from physical device addresses. The historic) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 532 Tm (UDF 2.01 Linux qualification cannot be inherited as V2 proof; support) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 516 Tm (revision and media-specific VAT/sparing/metadata cases individually.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 06) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (COMMON V2 IMPLEMENTATION BOUNDARY) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (Only infiltrator_filesystem_api_v2 is public. Target the genuine) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (PROBE/MOUNT/UNMOUNT/STAT/LIST/READ operations first; negotiate actual) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (supported operation masks. VOLUME, METADATA and DEFRAG operations \(including) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 628 Tm (MAP, PLAN, EXECUTE, VERIFY, RECOVER\) are individually qualified or refused.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 612 Tm (Test Media uses the same provider's qualified format and namespace) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 596 Tm (operations. No FUSE, legacy ABI, private driver or kernel proxy. Hosted and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 580 Tm (import-free freestanding profiles share the format engine, with generic) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 564 Tm (environment-specific host services.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 07) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (ENGINEERING ACCEPTANCE / HOST I/O) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (- A valid CORE descriptor with a real PROBE is mandatory. Every optional) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (operation has its own capability bit and non-null qualified callback;) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (unavailable operations have neither. Recognised format, unsupported feature,) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 628 Tm (corruption, host I/O failure and stale handles remain distinct outcomes.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 598 Tm (- Use Common's sector-aligned bounded byte helpers. Validate partition) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 582 Tm (extent, logical/physical sector geometry and maximum transfer before reading.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 566 Tm (Serialize overlapping read/modify/write sectors; request explicit flush) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 550 Tm (barriers. Never infer exclusivity from flags alone; require real exclusive) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 534 Tm (unmounted ownership before formatting or raw mutation. Require the Common) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 518 Tm (entropy service when the format needs a unique identity.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 08) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (CONSUMERS / RELOCATION / TEST MEDIA) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (- Qualify hosted and import-free freestanding profiles separately; enforce) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (module identity and trust, exact export set and actual packaged bytes. BOOT) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (and kernel are generic loaders; BOOT uses the same file in) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 628 Tm (/EFI/InfiltratorOS/BOOT/drivers_x64/, with the installed canonical copy in) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 612 Tm (/System/Filesystems/. No per-format .ko/.efi, FUSE, proxy, legacy ABI,) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 596 Tm (external formatter or consumer-side parsing substitutes for the engine.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 566 Tm (- Test Media must format and populate through actual V2 FORMAT/CREATE/WRITE) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 550 Tm (operations; an independent formatter/reader may be a test oracle only, never) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 534 Tm (production fallback. Defragmentation maps, plans, execution, verification and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 518 Tm (recovery require independent proof of ownership, data preservation and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 502 Tm (interruption safety. Where not implemented they remain absent.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 09) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (VALIDATION, RECOVERY AND COMPATIBILITY) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (Use mkudffs images by revision and partition type, malformed descriptors and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (corrupt mappings. Historical central UDF 2.01) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (mount/create/rename/write/remount test run 39932498942 is kernel evidence,) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 628 Tm (not independent Common V2 qualification. Compare file bytes against an) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 612 Tm (independent oracle, hash unchanged read-only images, inject short I/O,) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 596 Tm (corruption and interruption; validate exact published module separately in) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 580 Tm (BOOT and kernel. Use disposable media only. No new independent binary or test) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 564 Tm (pass is claimed.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 10) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (BUILD, INSTALLATION AND RELEASE) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm (The target installation is /System/Filesystems/UDF.so and) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (/System/Resources/Documentation/Filesystem-UDF.pdf. Neither file is currently) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 644 Tm (distributed by this repository. Once the implementation qualifies, the) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 628 Tm (intended release is a portable amd64 DEB and CPU-native source-first RUN,) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 612 Tm (with GitHub's automatic source archive. No install or build command is) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 596 Tm (advertised before an executable build exists.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 566 Tm (- New build and implementation code is native C/C++ and shell as appropriate,) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 550 Tm (no Python. The generic amd64 DEB and CPU-native source-downloading RUN are) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 534 Tm (the only manually published release assets; GitHub generates source archives.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 518 Tm (RUN fetches exact versioned source and pinned Common dependency, verifies) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 502 Tm (integrity, compiles natively and installs the selected package; no source) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 486 Tm (archive or DEB embedded. Release immutable exact-main qualification only. No) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 470 Tm (release exists yet.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 749 595 93 re f
-0.04 0.54 0.60 rg 50 747 115 4 re f
-0.78 0.82 0.86 RG 0.6 w 50 50 m 545 50 l S
-BT /F2 9 Tf 0.62 0.86 0.90 rg 1 0 0 1 50 801 Tm (INFILTRATOR / ORIGINAL FILESYSTEM HISTORY AND DESIGN) Tj ET
-BT /F2 19 Tf 1 1 1 rg 1 0 0 1 50 771 Tm (Universal Disk Format) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 34 Tm (Filesystem-UDF / engineering reference) Tj ET
-BT /F1 8 Tf 0.07 0.16 0.23 rg 1 0 0 1 512 34 Tm (PAGE 11) Tj ET
-BT /F2 14 Tf 0.02 0.45 0.50 rg 1 0 0 1 50 711 Tm (PRIMARY SOURCES AND IMPLEMENTATION STATUS) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 676 Tm () Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 660 Tm (https://ecma-international.org/publications-and-standards/standards/ecma-167/) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 630 Tm () Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 614 Tm (https://github.com/Infiltrator-Projects/Filesystems/tree/101026021d9088d80b7f) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 598 Tm (0f472d9061f0e2c688a3/native/filesystems/udf) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 568 Tm () Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 552 Tm (https://github.com/Infiltrator-Projects/Libraries/blob/main/docs/FILESYSTEM_C) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 536 Tm (OMMON_ABI_V2.md) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 506 Tm (Independent mkudffs images across admitted revisions and partition types,) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 490 Tm (corrupt descriptors, unsupported mappings and dirty state. Historical central) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 474 Tm (Linux tests do not qualify the independent V2 provider. Compare independent) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 458 Tm (payloads and unchanged-image hashes; inject truncation, corruption and I/O) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 442 Tm (faults. Establish exact-revision ABI, hosted and import-free freestanding) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 426 Tm (qualification, then independently test BOOT and kernel integration. No local) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 410 Tm (build, runtime or packaging qualification is claimed.) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 380 Tm (Source extraction, implementation and release qualification remain) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 364 Tm (outstanding. This is a source-backed engineering reference, not a complete) Tj ET
-BT /F1 10.2 Tf 0.07 0.16 0.23 rg 1 0 0 1 50 348 Tm (original specification.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 750 595 92 re f
-0.03 0.53 0.58 rg 50 747 120 4 re f
-0.75 0.82 0.86 RG .7 w 50 49 m 545 49 l S
-BT /F2 9 Tf 0.62 0.88 0.91 rg 1 0 0 1 50 803 Tm (INFILTRATOR / FILESYSTEM DESIGN & QUALIFICATION) Tj ET
-BT /F2 17 Tf 1 1 1 rg 1 0 0 1 50 773 Tm (UDF - format and architecture) Tj ET
-BT /F1 8 Tf 0.34 0.4 0.44 rg 1 0 0 1 50 34 Tm (Filesystem-UDF | Design-stage reference | 29e262557880) Tj ET
-BT /F1 8 Tf 0.34 0.4 0.44 rg 1 0 0 1 505 34 Tm (PAGE 01) Tj ET
-BT /F2 12 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 706 Tm (STATUS / DESIGN CONTRACT) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 681 Tm (This repository is at the design stage. No independent runtime provider, installation) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 665 Tm (package or qualified filesystem operations are claimed. This document is not an) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 649 Tm (installation or user manual.) Tj ET
-BT /F2 12 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 614 Tm (Format scope) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 589 Tm (ECMA-167/UDF local block and optical storage; supported revisions and partition) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 573 Tm (types explicit. This is a design contract, not a claim of implemented capabilities.) Tj ET
-BT /F2 12 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 538 Tm (On-disk structures and ownership) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 513 Tm (Anchor and descriptor sequences, descriptor tags/CRC, logical volume and partition) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 497 Tm (maps, file-set and file entries, allocation descriptors, directory identifiers, VAT,) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 481 Tm (sparable and metadata partition variants. The single native C/C++ engine owns these) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 465 Tm (format semantics; consumers provide bounded Common V2 host services, never) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 449 Tm (competing parsers.) Tj ET
-BT /F2 11 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 414 Tm (Conceptual provider boundary \(planned\)) Tj ET
-0.91 0.95 0.96 rg 50 369 110 30 re f
-BT /F2 9 Tf 0.08 0.16 0.23 rg 1 0 0 1 57 380 Tm (Native media) Tj ET
-0.03 0.53 0.58 RG 1 w 162 384 m 176 384 l S
-0.91 0.95 0.96 rg 178 369 110 30 re f
-BT /F2 9 Tf 0.08 0.16 0.23 rg 1 0 0 1 185 380 Tm (Bounded host I/O) Tj ET
-0.03 0.53 0.58 RG 1 w 290 384 m 304 384 l S
-0.91 0.95 0.96 rg 306 369 110 30 re f
-BT /F2 9 Tf 0.08 0.16 0.23 rg 1 0 0 1 313 380 Tm (Native engine) Tj ET
-0.03 0.53 0.58 RG 1 w 418 384 m 432 384 l S
-0.91 0.95 0.96 rg 434 369 110 30 re f
-BT /F2 9 Tf 0.08 0.16 0.23 rg 1 0 0 1 441 380 Tm (Common V2) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 750 595 92 re f
-0.03 0.53 0.58 rg 50 747 120 4 re f
-0.75 0.82 0.86 RG .7 w 50 49 m 545 49 l S
-BT /F2 9 Tf 0.62 0.88 0.91 rg 1 0 0 1 50 803 Tm (INFILTRATOR / FILESYSTEM DESIGN & QUALIFICATION) Tj ET
-BT /F2 17 Tf 1 1 1 rg 1 0 0 1 50 773 Tm (UDF - integrity and failure) Tj ET
-BT /F1 8 Tf 0.34 0.4 0.44 rg 1 0 0 1 50 34 Tm (Filesystem-UDF | Design-stage reference | 29e262557880) Tj ET
-BT /F1 8 Tf 0.34 0.4 0.44 rg 1 0 0 1 505 34 Tm (PAGE 02) Tj ET
-BT /F2 12 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 706 Tm (Integrity and mutation invariants) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 681 Tm (Validate tag locations and CRCs, logical-to-physical mappings, extent bounds and) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 665 Tm (integrity state. Do not treat write-once, packet-written and random-writable media as) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 649 Tm (interchangeable. Qualify revision-specific allocation and update rules before) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 633 Tm (mutations. All arithmetic, offsets and lengths are checked before I/O. Writable) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 617 Tm (operations require exclusive access, explicit ordering, flush and) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 601 Tm (interruption/recovery evidence. Read-only operations leave the medium unchanged.) Tj ET
-BT /F2 12 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 566 Tm (Failure and ownership policy) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 541 Tm (Validate before following on-disk references. Unsupported feature combinations,) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 525 Tm (malformed media, unavailable operations and host failures are distinct outcomes.) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 509 Tm (Mutation requires the ownership and ordering conditions in the design; read-only) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 493 Tm (operations must leave the source image unchanged.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 750 595 92 re f
-0.03 0.53 0.58 rg 50 747 120 4 re f
-0.75 0.82 0.86 RG .7 w 50 49 m 545 49 l S
-BT /F2 9 Tf 0.62 0.88 0.91 rg 1 0 0 1 50 803 Tm (INFILTRATOR / FILESYSTEM DESIGN & QUALIFICATION) Tj ET
-BT /F2 17 Tf 1 1 1 rg 1 0 0 1 50 773 Tm (UDF - interface and qualification) Tj ET
-BT /F1 8 Tf 0.34 0.4 0.44 rg 1 0 0 1 50 34 Tm (Filesystem-UDF | Design-stage reference | 29e262557880) Tj ET
-BT /F1 8 Tf 0.34 0.4 0.44 rg 1 0 0 1 505 34 Tm (PAGE 03) Tj ET
-BT /F2 12 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 706 Tm (Common V2 boundary) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 681 Tm (Only infiltrator_filesystem_api_v2 is public. Target the genuine) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 665 Tm (PROBE/MOUNT/UNMOUNT/STAT/LIST/READ operations first; negotiate actual) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 649 Tm (supported operation masks. VOLUME, METADATA and DEFRAG operations \(including) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 633 Tm (MAP, PLAN, EXECUTE, VERIFY, RECOVER\) are individually qualified or refused.) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 617 Tm (Test Media uses the same provider's qualified format and namespace operations. No) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 601 Tm (FUSE, legacy ABI, private driver or kernel proxy. Hosted and import-free) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 585 Tm (freestanding profiles share the format engine, with generic environment-specific host) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 569 Tm (services.) Tj ET
-BT /F2 12 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 534 Tm (Independent qualification) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 509 Tm (Use mkudffs images by revision and partition type, malformed descriptors and corrupt) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 493 Tm (mappings. Historical central UDF 2.01 mount/create/rename/write/remount test run) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 477 Tm (39932498942 is kernel evidence, not independent Common V2 qualification. Compare file) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 461 Tm (bytes against an independent oracle, hash unchanged read-only images, inject short) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 445 Tm (I/O, corruption and interruption; validate exact published module separately in BOOT) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 429 Tm (and kernel. Use disposable media only. No new independent binary or test pass is) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 413 Tm (claimed.) Tj ET
-
-%%Page
-0.05 0.13 0.22 rg 0 750 595 92 re f
-0.03 0.53 0.58 rg 50 747 120 4 re f
-0.75 0.82 0.86 RG .7 w 50 49 m 545 49 l S
-BT /F2 9 Tf 0.62 0.88 0.91 rg 1 0 0 1 50 803 Tm (INFILTRATOR / FILESYSTEM DESIGN & QUALIFICATION) Tj ET
-BT /F2 17 Tf 1 1 1 rg 1 0 0 1 50 773 Tm (UDF - engineering acceptance) Tj ET
-BT /F1 8 Tf 0.34 0.4 0.44 rg 1 0 0 1 50 34 Tm (Filesystem-UDF | Design-stage reference | 29e262557880) Tj ET
-BT /F1 8 Tf 0.34 0.4 0.44 rg 1 0 0 1 505 34 Tm (PAGE 04) Tj ET
-BT /F2 12 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 706 Tm (Engineering and release acceptance) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 681 Tm (- A valid CORE descriptor with a real PROBE is mandatory. Every optional operation) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 665 Tm (has its own capability bit and non-null qualified callback; unavailable operations have) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 649 Tm (neither. Recognised format, unsupported feature, corruption, host I/O failure and) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 633 Tm (stale handles remain distinct outcomes. - Use Common's sector-aligned bounded byte) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 617 Tm (helpers. Validate partition extent, logical/physical sector geometry and maximum) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 601 Tm (transfer before reading. Serialize overlapping read/modify/write sectors; request) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 585 Tm (explicit flush barriers. Never infer exclusivity from flags alone; require real exclusive) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 569 Tm (unmounted ownership before formatting or raw mutation. Require the Common entropy) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 553 Tm (service when the format needs a unique identity. - Qualify hosted and import-free) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 537 Tm (freestanding profiles separately; enforce module identity and trust, exact export set) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 521 Tm (and actual packaged bytes. BOOT and kernel are generic loaders; BOOT uses the same) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 505 Tm (file in /EFI/InfiltratorOS/BOOT/drivers_x64/, with the installed canonical copy in) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 489 Tm (/System/Filesystems/. No per-format .ko/.efi, FUSE, proxy, legacy ABI, external) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 473 Tm (formatter or consumer-side parsing substitutes for the engine. - Test Media must) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 457 Tm (format and populate through actual V2 FORMAT/CREATE/WRITE operations; an) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 441 Tm (independent formatter/reader may be a test oracle only, never production fallback.) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 425 Tm (Defragmentation maps, plans, execution, verification and recovery require independent) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 409 Tm (proof of ownership, data preservation and interruption safety. Where not implemented) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 393 Tm (they remain absent. - New build and implementation code is native C/C++ and shell as) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 377 Tm (appropriate, no Python. The generic amd64 DEB and CPU-native source-downloading) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 361 Tm (RUN are the only manually published release assets; GitHub generates source) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 345 Tm (archives. RUN fetches exact versioned source and pinned Common dependency, verifies) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 329 Tm (integrity, compiles natively and installs the selected package; no source archive or) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 313 Tm (DEB embedded. Release immutable exact-main qualification only. No release exists yet.) Tj ET
-BT /F2 12 Tf 0.02 0.48 0.52 rg 1 0 0 1 50 278 Tm (Source and authority) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 253 Tm (Prepared from README.md and native/filesystems/udf/DESIGN.md at revision) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 237 Tm (29e262557880ada362d40941ba2ed44002b690c3. The editable Markdown design and) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 221 Tm (migration status are authoritative. No test result, release or implemented capability) Tj ET
-BT /F1 10.5 Tf 0.08 0.16 0.23 rg 1 0 0 1 50 205 Tm (is inferred from this reference.) Tj ET
+0.06 0.15 0.23 rg 0 768 595 74 re f
+1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
+BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
+0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (14. Normative references and validation) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (ECMA-167 and OSTA's revision-specific UDF profiles are the format authority:) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (https://ecma-international.org/publications-and-standards/technical-reports/ecma-tr) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (-112/ . Independent pinned structure cross-check:) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (https://github.com/torvalds/linux/blob/v6.12/fs/udf/ecma_167.h and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (fs/udf/osta_udf.h. Algorithms in fs/udf/super.c, partition.c, inode.c, directory.c) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (and unicode.c. Use independent udftools mkudffs and udfinfo, optical images and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (revision-specific fixtures. Test corrupted anchors, conflicting descriptor) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (sequences, CRC/tag-location failures, map indirection, VAT generations, sparing and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (metadata mirrors, short/long/inline extents, names, streams and interrupted writes.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (Exact map-variant structures, sequential-media discovery, timestamp semantics and) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (revision-specific write constraints still need detailed normative validation.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 552 Td (Operational provider qualification is separate.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 528 Td (Historical central UDF 2.01 Linux mount/create/rename/write/remount test run) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 514 Td (39932498942 is provenance, not independent Common V2 qualification.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 490 Td (Retained source:) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 476 Td (https://github.com/Infiltrator-Projects/Filesystems/blob/101026021d9088d80b7f0f472d) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 462 Td (9061f0e2c688a3/native/filesystems/udf/linux/ecma_167.h \(blob 415b050b97\).) Tj ET
+0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 15) Tj ET
