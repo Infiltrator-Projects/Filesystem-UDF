@@ -20,7 +20,7 @@ Volume descriptors describe physical partitions, logical volumes, character sets
 
 A logical-block address comprises a 32-bit block number and 16-bit partition-map reference. The reference indexes the logical volume's partition-map table, not the partition number itself. A type-1 six-byte map contains type/length at 0/1, volume sequence 2 and physical partition number 4. For a simple physical map, resolve the referenced partition and add its start sector to the block position using compatible logical units. Example: with 2048-byte sectors/blocks and partition start 1000, logical block 25 begins at byte 2099200. Type-2 maps include virtual, sparable and metadata partitions, each requiring additional translation. Validate volume sequence, partition bounds and mapping depth. Never use the physical formula for a virtual or metadata partition merely because a partition descriptor has a plausible start.
 
-The ECMA-167 tag location, CRC, extent lengths and logical partition map must agree before file-set traversal. VAT, sparing and metadata partitions are separate mapping profiles; support depends on UDF revision and recording model.
+Before file-set traversal, apply the descriptor-tag checks and validate every resolved extent under the admitted revision and recording model.
 
 ## File set and ICB bootstrap
 

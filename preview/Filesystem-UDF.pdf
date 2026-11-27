@@ -137,26 +137,25 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 17 0 R >>
 endobj
 17 0 obj
-<< /Length 2096 >>
+<< /Length 1958 >>
 stream
 0.06 0.15 0.23 rg 0 768 595 74 re f
 1 1 1 rg BT /F2 10 Tf 43 811 Td (INFILTRATOR / FILESYSTEM ENGINEERING) Tj ET
 BT /F2 22 Tf 43 784 Td (UDF - technical reference) Tj ET
 0.08 0.14 0.20 rg BT /F2 15 Tf 43 736 Td (5. Partition maps and translation) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (A logical-block address comprises a 32-bit block number and 16-bit partition-map) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (reference. The reference indexes the logical volume's partition-map table, not the) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (partition number itself. A type-1 six-byte map contains type/length at 0/1, volume) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (sequence 2 and physical partition number 4. For a simple physical map, resolve the) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (referenced partition and add its start sector to the block position using) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (compatible logical units. Example: with 2048-byte sectors/blocks and partition) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (start 1000, logical block 25 begins at byte 2099200. Type-2 maps include virtual,) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (sparable and metadata partitions, each requiring additional translation. Validate) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (volume sequence, partition bounds and mapping depth. Never use the physical formula) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (for a virtual or metadata partition merely because a partition descriptor has a) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (plausible start.) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 542 Td (The ECMA-167 tag location, CRC, extent lengths and logical partition map must agree) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 528 Td (before file-set traversal. VAT, sparing and metadata partitions are separate) Tj ET
-0.08 0.14 0.20 rg BT /F3 10 Tf 43 514 Td (mapping profiles; support depends on UDF revision and recording model.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 706 Td (A logical-block address comprises a 32-bit block number and 16-bit) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 692 Td (partition-map reference. The reference indexes the logical volume's) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 678 Td (partition-map table, not the partition number itself. A type-1 six-byte map) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 664 Td (contains type/length at 0/1, volume sequence 2 and physical partition number 4.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 650 Td (For a simple physical map, resolve the referenced partition and add its start) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 636 Td (sector to the block position using compatible logical units. Example: with) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 622 Td (2048-byte sectors/blocks and partition start 1000, logical block 25 begins at) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 608 Td (byte 2099200. Type-2 maps include virtual, sparable and metadata partitions,) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 594 Td (each requiring additional translation. Validate volume sequence, partition) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 580 Td (bounds and mapping depth. Never use the physical formula for a virtual or) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 566 Td (metadata partition merely because a partition descriptor has a plausible start.) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 542 Td (Before file-set traversal, apply the descriptor-tag checks and validate every) Tj ET
+0.08 0.14 0.20 rg BT /F3 10 Tf 43 528 Td (resolved extent under the admitted revision and recording model.) Tj ET
 0.2 0.3 0.4 rg BT /F1 9 Tf 43 32 Td (Historical development and engineering reference | 6) Tj ET
 endstream
 endobj
@@ -400,26 +399,26 @@ xref
 0000007478 00000 n 
 0000009366 00000 n 
 0000009514 00000 n 
-0000011662 00000 n 
-0000011810 00000 n 
-0000013506 00000 n 
-0000013654 00000 n 
-0000015318 00000 n 
-0000015466 00000 n 
-0000017270 00000 n 
-0000017418 00000 n 
-0000019220 00000 n 
-0000019368 00000 n 
-0000021157 00000 n 
-0000021305 00000 n 
-0000023075 00000 n 
-0000023223 00000 n 
-0000024988 00000 n 
-0000025136 00000 n 
-0000026879 00000 n 
-0000027027 00000 n 
+0000011524 00000 n 
+0000011672 00000 n 
+0000013368 00000 n 
+0000013516 00000 n 
+0000015180 00000 n 
+0000015328 00000 n 
+0000017132 00000 n 
+0000017280 00000 n 
+0000019082 00000 n 
+0000019230 00000 n 
+0000021019 00000 n 
+0000021167 00000 n 
+0000022937 00000 n 
+0000023085 00000 n 
+0000024850 00000 n 
+0000024998 00000 n 
+0000026741 00000 n 
+0000026889 00000 n 
 trailer
 << /Size 36 /Root 1 0 R >>
 startxref
-29483
+29345
 %%EOF
