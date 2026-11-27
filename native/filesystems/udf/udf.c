@@ -91,6 +91,7 @@ static int unicode(const uint8_t *p,uint32_t n,char *out,uint32_t cap,uint32_t *
             d[0]=(char)((size==2?0xc0:size==3?0xe0:0xf0)|c);
         }
     }
+    if(filename&&!*len)return IFS_FS_CORRUPT;
     out[*len]=0;return IFS_FS_OK;
 }
 static int long_addr(const Volume *v,const uint8_t *p,uint32_t *pos,uint32_t *bytes)
@@ -387,7 +388,8 @@ static int label_impl(void *p,char *out,uint32_t cap,uint32_t *n)
  * and unknown component types are unsupported. */
 static int link_impl(void *p,const char *path,char *out,uint32_t cap,uint32_t *n)
 {
-    if(!n)return IFS_FS_INVALID;*n=0;Volume *v=mounted(p);if(!v||!out)return IFS_FS_INVALID;
+    if(!n)return IFS_FS_INVALID;
+    *n=0;Volume *v=mounted(p);if(!v||!out)return IFS_FS_INVALID;
     Entry e;int rc=resolve(v,path,&e);if(rc)return rc;
     if(e.node.type!=IFS_FS_ENTRY_LINK||!e.node.bytes||e.node.bytes>4096)return IFS_FS_UNSUPPORTED;
     uint8_t raw[4096];char target[4096];uint32_t used=0;
