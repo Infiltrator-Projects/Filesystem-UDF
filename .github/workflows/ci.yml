@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+name: UDF Common V2 development qualification
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-media:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Infiltrator-Projects/Libraries
+          ref: 225e640ebed5351b1481bfbeef1a6144ca5146e7
+          path: Libraries
+          persist-credentials: false
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends genisoimage
+          mkdir -p "$RUNNER_TEMP/udf/tree/dir"
+          printf yes > "$RUNNER_TEMP/udf/tree/dir/child"
+          dd if=/dev/urandom of="$RUNNER_TEMP/udf/tree/proof.bin" bs=1 count=65573 status=none
+          genisoimage -quiet -udf -V V2UDF -o "$RUNNER_TEMP/udf/media.img" "$RUNNER_TEMP/udf/tree"
+          # The device image must be aligned to both host geometries.
+          size=$(stat -c %s "$RUNNER_TEMP/udf/media.img")
+          truncate -s "$(( (size+4095)/4096*4096 ))" "$RUNNER_TEMP/udf/media.img"
+          sha256sum "$RUNNER_TEMP/udf/media.img" > "$RUNNER_TEMP/udf/before"
+          make check MEDIA="$RUNNER_TEMP/udf/media.img" PROOF="$RUNNER_TEMP/udf/tree/proof.bin"
+          make clean
+          make CFLAGS="-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer" check MEDIA="$RUNNER_TEMP/udf/media.img" PROOF="$RUNNER_TEMP/udf/tree/proof.bin"
+          sha256sum -c "$RUNNER_TEMP/udf/before"
